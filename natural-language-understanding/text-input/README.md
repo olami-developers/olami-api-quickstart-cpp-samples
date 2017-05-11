@@ -6,6 +6,7 @@ OLAMI website and documentation: [http://olami.ai](http://olami.ai)
 
 ## Build the application
 
+Run the following command in bash to build the test program *nluapi_test*.
 
 ```
 make
