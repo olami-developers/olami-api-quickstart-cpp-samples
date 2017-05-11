@@ -4,7 +4,7 @@ This directory contains sample code for using Natural Language Understanding API
 
 OLAMI website and documentation: [http://olami.ai](http://olami.ai)
 
-## Build the application
+## Build the application:
 
 Run the following command in bash to build the test program *nluapi_test*.
 
@@ -12,7 +12,7 @@ Run the following command in bash to build the test program *nluapi_test*.
 make
 ```
 
-## Run the application (by Python 3):
+## Run the application:
 
 Replace **api_url, your_app_key, your_app_secret, your_text_input** in accordance to your needs and your own data.
 

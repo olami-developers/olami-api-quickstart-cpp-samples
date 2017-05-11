@@ -8,7 +8,7 @@ OLAMI website and documentation: [http://olami.ai](http://olami.ai)
 
 The audio file is required in WAV file format PCM, **mono** recording with a sample rate of **16000 (16 KHz)** and a bit resolution of **16 bits**.
 
-## Build the application
+## Build the application:
 
 Run the following command in bash to build the test program *asrapi_test*.
 
