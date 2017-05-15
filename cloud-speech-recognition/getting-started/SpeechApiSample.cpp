@@ -342,7 +342,7 @@ string SpeechApiSample::getResultFromResponse() {
  * @param seqValue the value of 'seq' for 'seq=xxx' HTTP parameter.
  */
 string SpeechApiSample::getRecognitionResult(string apiName, string seqValue) {
-	string queryData = getBasicQueryString(apiName,seqValue);
+	string queryData = getBasicQueryString(apiName,seqValue) + "&stop=1";
 	string result = "";
 	long http_code = -1;
 
