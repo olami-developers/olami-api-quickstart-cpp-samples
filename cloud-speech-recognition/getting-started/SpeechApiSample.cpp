@@ -450,7 +450,9 @@ string SpeechApiSample::getBasicQueryString(string apiName, string seqValue) {
 // Prepare message to generate an MD5 digest.
 string SpeechApiSample::getSignMsg(string apiName, time_t timestamp) {
 	if(timestamp == NULL) {
-		timestamp = time(NULL);
+		struct timeval tp;
+		gettimeofday(&tp, NULL);
+		timestamp = tp.tv_sec * 1000 + tp.tv_usec / 1000;
 	}
 
 	stringstream timestr;
@@ -472,7 +474,9 @@ string SpeechApiSample::getSignMsg(string apiName, time_t timestamp) {
 // Assemble all the HTTP parameters you want to send
 string SpeechApiSample::getPostData(string apiName, string seqValue, string signMsg, time_t timestamp) {
 	if(timestamp == NULL) {
-		timestamp = time(NULL);
+		struct timeval tp;
+		gettimeofday(&tp, NULL);
+		timestamp = tp.tv_sec * 1000 + tp.tv_usec / 1000;
 	}
 	stringstream timestr;
 	// timestamp transfer to stringstream
