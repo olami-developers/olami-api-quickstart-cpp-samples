@@ -16,6 +16,7 @@
 #include <cstdlib>
 #include <sstream>
 #include <curl/curl.h>
+#include <sys/time.h>
 
 #include "NluApiSample.h"
 #include "lib/md5.h"
@@ -53,7 +54,10 @@ void NluApiSample::setLocalization(string apiBaseUrl) {
  * @param inputText the text you want to recognize.
  */
 string NluApiSample::getRecognitionResult(string apiName, string inputText) {
-	time_t timestamp = time(NULL);
+	struct timeval tp;
+	gettimeofday(&tp, NULL);
+	long int timestamp = tp.tv_sec * 1000 + tp.tv_usec / 1000;
+	
 	string signMsg = this->getSignMsg(apiName,timestamp);
 	string postData = this->getPostData(apiName,inputText,signMsg,timestamp);
 	string result = "";
