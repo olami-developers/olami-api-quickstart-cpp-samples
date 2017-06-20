@@ -18,6 +18,7 @@
 #include <cstdio>
 #include <sstream>
 #include <fstream>
+#include <sys/time.h>
 #include "SpeechApiSample.h"
 #include "lib/md5.h"
 
@@ -437,7 +438,10 @@ size_t SpeechApiSample::writeMemoryCallback(void *contents, size_t size, size_t 
  * @param seqValue the value of 'seq' for 'seq=xxx' HTTP parameter.
  */
 string SpeechApiSample::getBasicQueryString(string apiName, string seqValue) {
-	time_t timestamp = time(NULL);
+	struct timeval tp;
+	gettimeofday(&tp, NULL);
+	long int timestamp = tp.tv_sec * 1000 + tp.tv_usec / 1000;
+	
 	string signMsg = getSignMsg(apiName,timestamp);
 	string postData = getPostData(apiName,seqValue,signMsg,timestamp);
 	return postData;
