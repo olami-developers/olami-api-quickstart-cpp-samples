@@ -149,7 +149,9 @@ size_t NluApiSample::writeMemoryCallback(void *contents, size_t size, size_t nme
 // Prepare message to generate an MD5 digest.
 string NluApiSample::getSignMsg(string apiName, time_t timestamp) {
 	if(timestamp == NULL) {
-		timestamp = time(NULL);
+		struct timeval tp;
+		gettimeofday(&tp, NULL);
+		timestamp = tp.tv_sec * 1000 + tp.tv_usec / 1000;
 	}
 
 	stringstream timestr;
@@ -172,7 +174,9 @@ string NluApiSample::getSignMsg(string apiName, time_t timestamp) {
 // Request NLU service by HTTP POST
 string NluApiSample::getPostData(string apiName, string inputText, string signMsg, time_t timestamp) {
 	if(timestamp == NULL) {
-		timestamp = time(NULL);
+		struct timeval tp;
+		gettimeofday(&tp, NULL);
+		timestamp = tp.tv_sec * 1000 + tp.tv_usec / 1000;
 	}
 	stringstream timestr;
 	// timestamp transfer to stringstream
