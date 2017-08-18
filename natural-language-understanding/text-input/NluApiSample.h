@@ -36,8 +36,8 @@ public:
 	string getRecognitionResult(string,string);
 
 private:
-	string getSignMsg(string, time_t);
-	string getPostData(string, string, string, time_t);
+	string getSignMsg(string, long long);
+	string getPostData(string, string, string, long long);
 	static size_t writeMemoryCallback(void *, size_t, size_t, void *);
 	string _apiBaseUrl;
 	string _appKey;

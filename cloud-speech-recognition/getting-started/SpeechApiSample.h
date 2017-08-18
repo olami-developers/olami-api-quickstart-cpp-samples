@@ -42,8 +42,8 @@ public:
 	string sendAudioFile(string, string, bool, string, bool);
 
 private:
-	string getSignMsg(string, time_t);
-	string getPostData(string, string, string, time_t);
+	string getSignMsg(string, long long);
+	string getPostData(string, string, string, long long);
 	string getBasicQueryString(string,string);
 	static size_t writeMemoryCallback(void *, size_t, size_t, void *);
 	int saveResponse(const char *);

@@ -56,7 +56,8 @@ void NluApiSample::setLocalization(string apiBaseUrl) {
 string NluApiSample::getRecognitionResult(string apiName, string inputText) {
 	struct timeval tp;
 	gettimeofday(&tp, NULL);
-	long int timestamp = tp.tv_sec * 1000 + tp.tv_usec / 1000;
+	long long timestamp = tp.tv_sec;
+	timestamp *= 1000;
 	
 	string signMsg = this->getSignMsg(apiName,timestamp);
 	string postData = this->getPostData(apiName,inputText,signMsg,timestamp);
@@ -147,7 +148,7 @@ size_t NluApiSample::writeMemoryCallback(void *contents, size_t size, size_t nme
 }
 
 // Prepare message to generate an MD5 digest.
-string NluApiSample::getSignMsg(string apiName, time_t timestamp) {
+string NluApiSample::getSignMsg(string apiName, long long timestamp) {
 	if(timestamp == NULL) {
 		struct timeval tp;
 		gettimeofday(&tp, NULL);
@@ -172,7 +173,7 @@ string NluApiSample::getSignMsg(string apiName, time_t timestamp) {
 }
 
 // Request NLU service by HTTP POST
-string NluApiSample::getPostData(string apiName, string inputText, string signMsg, time_t timestamp) {
+string NluApiSample::getPostData(string apiName, string inputText, string signMsg, long long timestamp) {
 	if(timestamp == NULL) {
 		struct timeval tp;
 		gettimeofday(&tp, NULL);

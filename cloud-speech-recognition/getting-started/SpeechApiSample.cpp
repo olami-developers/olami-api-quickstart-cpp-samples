@@ -440,7 +440,8 @@ size_t SpeechApiSample::writeMemoryCallback(void *contents, size_t size, size_t 
 string SpeechApiSample::getBasicQueryString(string apiName, string seqValue) {
 	struct timeval tp;
 	gettimeofday(&tp, NULL);
-	long int timestamp = tp.tv_sec * 1000 + tp.tv_usec / 1000;
+	long long timestamp = tp.tv_sec;
+	timestamp *= 1000;
 	
 	string signMsg = getSignMsg(apiName,timestamp);
 	string postData = getPostData(apiName,seqValue,signMsg,timestamp);
@@ -448,7 +449,7 @@ string SpeechApiSample::getBasicQueryString(string apiName, string seqValue) {
 }
 
 // Prepare message to generate an MD5 digest.
-string SpeechApiSample::getSignMsg(string apiName, time_t timestamp) {
+string SpeechApiSample::getSignMsg(string apiName, long long timestamp) {
 	if(timestamp == NULL) {
 		struct timeval tp;
 		gettimeofday(&tp, NULL);
@@ -472,7 +473,7 @@ string SpeechApiSample::getSignMsg(string apiName, time_t timestamp) {
 }
 
 // Assemble all the HTTP parameters you want to send
-string SpeechApiSample::getPostData(string apiName, string seqValue, string signMsg, time_t timestamp) {
+string SpeechApiSample::getPostData(string apiName, string seqValue, string signMsg, long long timestamp) {
 	if(timestamp == NULL) {
 		struct timeval tp;
 		gettimeofday(&tp, NULL);
