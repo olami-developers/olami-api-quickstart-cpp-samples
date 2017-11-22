@@ -182,7 +182,8 @@ string NluApiSample::getPostData(string apiName, string inputText, string signMs
 	stringstream timestr;
 	// timestamp transfer to stringstream
 	timestr << timestamp;
-	string postData = "appkey="+ _appKey;
+	string postData = "_from=c#";
+	postData += "&appkey="+ _appKey;
 	postData += "&api="+ apiName;
 	postData += "&timestamp="+ timestr.str();
 	postData += "&sign="+ signMsg;
